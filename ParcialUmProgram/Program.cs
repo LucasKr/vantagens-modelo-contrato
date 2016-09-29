@@ -58,20 +58,20 @@ namespace ParcialUmProgram
                 if (EImpostos.DAS.Equals(i.Key))
                     valorPercentual = Math.Round(((i.Value / modelo.SalarioBruto) * 100), 2); 
 
-                file.WriteLine(" {0}: {1}% - {2:C} ", i.Key, valorPercentual, modelo.GetValorDesconto(i.Key));
+                file.WriteLine(" {0}: {1}% - {2:C} ", i.Key, valorPercentual, modelo.CalculaValorDesconto(i.Key));
             }
-            file.WriteLine(" Total impostos: {0}%", Math.Round(((modelo.GetValorDescontos() / modelo.SalarioBruto) * 100), 2));
-            file.WriteLine(" Total impostos: {0:C}", modelo.GetValorDescontos());
+            file.WriteLine(" Total impostos: {0}%", Math.Round(((modelo.CalculaValorDescontos() / modelo.SalarioBruto) * 100), 2));
+            file.WriteLine(" Total impostos: {0:C}", modelo.CalculaValorDescontos());
             file.WriteLine("");
             file.WriteLine(" Beneficios: ");
 
             foreach(var i in modelo.BeneficiosCalulados)
             { 
-                file.WriteLine(" {0}: {1:C} ", i.Key, modelo.GetValorBeneficio(i.Key));
+                file.WriteLine(" {0}: {1:C} ", i.Key, modelo.CalculaValorBeneficio(i.Key));
             }
-            file.WriteLine(" Total Beneficios: {0:C} ", modelo.GetValorAdicionais());
+            file.WriteLine(" Total Beneficios: {0:C} ", modelo.CalculaValorAdicional());
             file.WriteLine("");
-            file.WriteLine(" Salário Bruto: {0:C} Salário Liquido: {1:C} Salário Liquido c/ Beneficios: {2:C}", modelo.SalarioBruto, modelo.GetSalarioLiquido(), modelo.GetSalarioLiquidoComBeneficios());
+            file.WriteLine(" Salário Bruto: {0:C} Salário Liquido: {1:C} Salário Liquido c/ Beneficios: {2:C}", modelo.SalarioBruto, modelo.CalculaSalarioLiquido(), modelo.CalculaSalarioLiquidoComBeneficios());
         }
     }
 }

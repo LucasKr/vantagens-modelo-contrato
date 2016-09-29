@@ -12,15 +12,15 @@ namespace ParcialUmCore
         {
         }
 
-        public override decimal GetValorFerias()
+        public override decimal CalculaValorFerias()
         { 
             decimal umTercoDoBruto = SalarioBruto + (SalarioBruto / 3);
-            return ((umTercoDoBruto - GetValorDescontos()) / 12);
+            return ((umTercoDoBruto - CalculaValorDescontos()) / 12);
         }
 
-        public override decimal GetValorDecimo()
+        public override decimal CalculaValorDecimo()
         {
-            return ((SalarioBruto - GetValorDescontos()) / 12);
+            return ((SalarioBruto - CalculaValorDescontos()) / 12);
         }
 
         public override void SetPercentualImposto(EImpostos imposto, decimal percentual)

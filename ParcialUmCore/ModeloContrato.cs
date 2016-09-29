@@ -36,70 +36,70 @@ namespace ParcialUmCore
             BeneficiosCalulados.Add(eBeneficio, value);
         }
 
-        public virtual decimal GetValorFerias()
+        public virtual decimal CalculaValorFerias()
         {
             return 0;
         }
 
-        public virtual decimal GetValorDecimo()
+        public virtual decimal CalculaValorDecimo()
         {
             return 0;
         }
 
         public abstract void SetPercentualImposto(EImpostos imposto, decimal percentual);
 
-        public virtual decimal GetValorDescontos()
+        public virtual decimal CalculaValorDescontos()
         { 
             decimal result = 0;
             foreach(var item in ImpostosCalculados)
             {
-                result += GetValorDesconto(item.Key);
+                result += CalculaValorDesconto(item.Key);
             }
             return result;
         }
 
-        public virtual decimal GetValorDesconto(EImpostos imposto)
+        public virtual decimal CalculaValorDesconto(EImpostos imposto)
         {
             decimal percentual = 0; 
             return ImpostosCalculados.TryGetValue(imposto, out percentual) ? SalarioBruto * percentual : 0;
         }
 
 
-        public virtual decimal GetValorAdicionais()
+        public virtual decimal CalculaValorAdicional()
         {
             decimal result = 0m;
             foreach(var item in BeneficiosCalulados)
             {
-                result += GetValorBeneficio(item.Key);
+                result += CalculaValorBeneficio(item.Key);
             }
             return result;
         }
 
 
-        public virtual decimal GetValorBeneficio(EBeneficios beneficio)
+        public virtual decimal CalculaValorBeneficio(EBeneficios beneficio)
         {
             if (EBeneficios.Ferias.Equals(beneficio))
-                return GetValorFerias();
+                return CalculaValorFerias();
             else if (EBeneficios.DecimoTerceiro.Equals(beneficio))
-                return GetValorDecimo();
+                return CalculaValorDecimo();
              
             decimal valorBeneficio = 0;
             return BeneficiosCalulados.TryGetValue(beneficio, out valorBeneficio) ? valorBeneficio : 0;
         }
 
-        public virtual decimal GetValorHora()
+        public virtual decimal CalculaValorHora()
         {
             return SalarioBruto / HorasTrabalhadas;
         }
 
-        public virtual decimal GetSalarioLiquido()
+        public virtual decimal CalculaSalarioLiquido()
         {
-            return SalarioBruto - GetValorDescontos();
+            return SalarioBruto - CalculaValorDescontos();
         }
 
-        public virtual decimal GetSalarioLiquidoComBeneficios()
+        public virtual decimal CalculaSalarioLiquidoComBeneficios()
         {
-            return GetSalarioLiquido() + GetValorAdicionais();
+            return CalculaSalarioLiquido() + CalculaValorAdicional();
         }
     }
 }

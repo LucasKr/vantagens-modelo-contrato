@@ -21,14 +21,14 @@ namespace ParcialUmCore
             ImpostosCalculados.Add(imposto, percentual);
         }
 
-        public override decimal GetValorDesconto(EImpostos imposto)
+        public override decimal CalculaValorDesconto(EImpostos imposto)
         {
             decimal percentual;
 
             if (EImpostos.DAS.Equals(imposto))
                 return ImpostosCalculados.TryGetValue(imposto, out percentual) ? percentual : 0;
 
-            return base.GetValorDesconto(imposto);
+            return base.CalculaValorDesconto(imposto);
         }
 
     }
