@@ -60,7 +60,7 @@ namespace ParcialUmProgram
 
                 file.WriteLine(" {0}: {1}% - {2:C} ", i.Key, valorPercentual, modelo.CalculaValorDesconto(i.Key));
             }
-            file.WriteLine(" Total impostos: {0}%", Math.Round(((modelo.CalculaValorDescontos() / modelo.SalarioBruto) * 100), 2));
+            file.WriteLine(" Total percentual de impostos: {0}%", Math.Round(((modelo.CalculaValorDescontos() / modelo.SalarioBruto) * 100), 2));
             file.WriteLine(" Total impostos: {0:C}", modelo.CalculaValorDescontos());
             file.WriteLine("");
             file.WriteLine(" Beneficios: ");
